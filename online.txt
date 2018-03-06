@@ -1,0 +1,17 @@
+pritesh.loke@timesinternet.in
+
+
+open: http://code.nodesense.ai
+
+username: nodesense
+password: bsol
+
+open terminal/command prompt
+
+> git clone https://github.com/nodesense/react-workshop
+
+> cd react-workshop
+> npm install 
+> npm start
+
+
