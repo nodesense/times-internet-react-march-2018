@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 import Home from "./components/Home";
+import About from "./components/About";
 
 //Virtual dom
 export class App extends React.Component {
@@ -31,6 +32,8 @@ export class App extends React.Component {
                 <h1>React App</h1>
 
                 <Home />
+
+                <About />
                 
                 <Footer year={2017 + 1} 
                         company="React App" 

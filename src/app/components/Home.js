@@ -14,7 +14,7 @@ export default class Home extends Component {
     }
 
     increment() {
-        //BAD
+        //BAD, mutable
         this.state.counter++;
         console.log("Counter ", this.state.counter);
     
@@ -24,9 +24,33 @@ export default class Home extends Component {
        this.forceUpdate();
     }
 
+    decrement() {
+        //console.trace();
+
+        console.log("before setState ", 
+            this.state.counter);
+
+        //GOOD
+        //react keyword method
+        // set new state
+        // async api
+        // calls render method
+        this.setState({
+            //immutable
+            counter: this.state.counter - 1
+        })
+
+        this.setState({
+            flag: true
+        });
+
+        console.log("after setState ", 
+            this.state.counter);
+    }
+
     render() {
 
-        console.log("Home render");
+        console.log("Home render", this.state.counter);
 
        // let _this = this;
 
@@ -44,6 +68,14 @@ export default class Home extends Component {
         <button onClick={ ()=> this.increment()}>
           +1
         </button>
+
+    <div onClick={ ()=> this.decrement()}>
+        <div onClick={ ()=> this.decrement()}>
+            <button onClick={ ()=> this.decrement()}>
+            -1
+            </button>
+        </div>
+        </div>
 
     </div>
         )
