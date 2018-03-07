@@ -1,8 +1,10 @@
 
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-export default class CartSummary extends Component {
+// PureComponent implements shouldCompoentUpdate 
+
+export default class CartSummary extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -20,14 +22,14 @@ export default class CartSummary extends Component {
 
     // when parent render called on update cycle
     // when component this.setState called on update cycle
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("Summary should update");
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("Summary should update");
 
-        return this.props.amount != nextProps.amount ||
-               this.props.count != nextProps.count;
+    //     return this.props.amount != nextProps.amount ||
+    //            this.props.count != nextProps.count;
 
-        //return true; // calls render
-    }
+    //     //return true; // calls render
+    // }
 
     
     render() {

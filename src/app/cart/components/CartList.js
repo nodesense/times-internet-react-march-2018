@@ -1,18 +1,20 @@
 
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import CartItem from "./CartItem";
 
-export default class CartList extends Component {
+export default class CartList extends PureComponent {
     constructor(props) {
         super(props);
     }
      
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("Cart list should update");
-        return this.props.items != nextProps.items;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("Cart list should update");
+    //     console.log("this.props.items != nextProps.items", this.props.items != nextProps.items);
+
+    //     return this.props.items != nextProps.items;
+    // }
     
     render() {
         console.log("CartList render");
@@ -31,7 +33,9 @@ export default class CartList extends Component {
 
                     {
                         this.props.items.map(item => (
-                            <CartItem key={item.id} item = {item}
+                            <CartItem key={item.id} 
+                                      item = {item}
+                                      onRemove={this.props.onRemove}
                             />
                         ))
                     }

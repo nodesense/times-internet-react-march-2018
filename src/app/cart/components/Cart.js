@@ -18,6 +18,8 @@ export default class Cart extends Component {
             highlight: false,
             flag: false //dummy
         }
+
+        this.removeItem = this.removeItem.bind(this);
     }
 
     componentWillMount() {
@@ -61,16 +63,24 @@ export default class Cart extends Component {
          
         this.setState({
             items: newList
+        }, () => {
+            console.log("Setstate callback");
+            //this.recalculateTotal(this.state.items);
         })
 
         this.recalculateTotal(newList);
-         
     }
  
 
     removeItem(id) {
         //TODO:
-         
+         let newItems = this.state.items
+                        .filter(item => item.id != id);
+
+        this.setState({
+            items: newItems
+        });
+        this.recalculateTotal(newItems);
     }
 
     empty() {
@@ -109,6 +119,7 @@ export default class Cart extends Component {
             </Button>
 
             <CartList items={this.state.items}
+                      onRemove={this.removeItem}
                       
             
             />

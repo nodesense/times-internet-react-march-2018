@@ -67,6 +67,8 @@ export default class Home extends Component {
 
         return (
     <div>
+        <h2>Home</h2>
+        
         <p>Counter: {this.state.counter}</p>
         {/* 
         <button onClick={function() {

@@ -27,7 +27,7 @@ export default class CartItem extends Component {
                 <td>{item.price * item.qty}</td>
 
                 <td>
-                    <button onClick={ () => {} }>
+                    <button onClick={ () =>  this.props.onRemove(item.id) }>
                         Delete
                     </button>    
                 </td>

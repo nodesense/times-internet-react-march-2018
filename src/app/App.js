@@ -12,6 +12,13 @@ import About from "./components/About";
 //TODO: Lazy load cart
 import Cart from "./cart/components/Cart";
 
+import NotFound from "./components/NotFound";
+
+import {BrowserRouter as Router, 
+        Switch, 
+        Route} from 'react-router-dom';
+
+
 //Virtual dom
 export class App extends React.Component {
 
@@ -30,24 +37,36 @@ export class App extends React.Component {
     // create and return virtual dom
     render() {
         return (
-            <div>
-                <Header />
-                <h1>React App</h1>
+            <Router>
+                <div>
+                    <Header />
+                    <h1>React App</h1>
 
-                <Cart />
+                    {/* <Cart />
 
-                <Home  counter={1000} />
+                    <Home  counter={1000} />
 
-                <About />
-                
-                <Footer year={2018}
-                       
-                        address={this.address}
-                >
-                    <p>Contact us: 9:00 AM to 6:00 PM</p>
+                    <About /> */}
 
-                </Footer>
-            </div>
+                    <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/about" component={About} />
+                    <Route path="/cart" component={Cart} />
+                    <Route path="*" component={NotFound} />
+                  
+                    </Switch>
+
+                    
+                    <Footer year={2018}
+                        
+                            address={this.address}
+                    >
+                        <p>Contact us: 9:00 AM to 6:00 PM</p>
+                        
+
+                    </Footer>
+                </div>
+            </Router>
         )
     }
 }
