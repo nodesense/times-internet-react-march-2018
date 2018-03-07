@@ -2,17 +2,13 @@ import React, {Component} from 'react';
 
 import PropTypes from "prop-types";
 
+import store from "../store";
+
 //React.Component == Component
 
 export default class Home extends Component {
     constructor(props) {
         super();
-
-        //react keyword
-        //state is mutable
-        this.state = {
-            counter: props.counter
-        }
     }
 
     //ES.NEXT static inside class
@@ -25,70 +21,58 @@ export default class Home extends Component {
     }
 
     increment() {
-        //BAD, mutable
-        this.state.counter++;
-        console.log("Counter ", this.state.counter);
-    
-       // Trigger render call
-       //BAD
-       // trigger render function call
-       this.forceUpdate();
+        let action = {
+            type: 'INCREMENT',
+            value: 1
+        }
+
+        console.log("DISPATCH");
+        store.dispatch(action);
     }
 
     decrement() {
-        //console.trace();
+        let action = {
+            type: 'DECREMENT',
+            value: 1
+        }
 
-        console.log("before setState ", 
-            this.state.counter);
+        console.log("DISPATCH");
+        store.dispatch(action);
+    }
 
-        //GOOD
-        //react keyword method
-        // set new state
-        // async api
-        // calls render method
-        this.setState({
-            //immutable
-            counter: this.state.counter - 1
-        })
-
-        this.setState({
-            flag: true
+    componentDidMount() {
+        this.unsubscribeFn = store.subscribe( ()=> {
+            console.log("HOME SUBS");
+            this.forceUpdate();
         });
+    }
 
-        console.log("after setState ", 
-            this.state.counter);
+    componentWillUnmount() {
+        console.log("home will unmount");
+        this.unsubscribeFn();
     }
 
     render() {
+ 
+        let counter = store.getState();
 
-        console.log("Home render", this.state.counter);
-
-       // let _this = this;
-
+        console.log("Home render", counter);
+ 
         return (
     <div>
         <h2>Home</h2>
         
-        <p>Counter: {this.state.counter}</p>
-        {/* 
-        <button onClick={function() {
-            _this.increment();
-        }}>
-          +1
-        </button>
-    */}
+        <p>Counter: {counter}</p>
+       
 
         <button onClick={ ()=> this.increment()}>
           +1
         </button>
-
-    <div onClick={ ()=> this.decrement()}>
-        <div onClick={ ()=> this.decrement()}>
-            <button onClick={ ()=> this.decrement()}>
-            -1
-            </button>
-        </div>
-        </div>
+ 
+        <button onClick={ ()=> this.decrement()}>
+        -1
+        </button>
+        
 
     </div>
         )

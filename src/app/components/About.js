@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+// contact is a container component
 import Contact from "./Contact";
 
 export default class About extends Component {
@@ -61,7 +62,7 @@ export default class About extends Component {
 
             {
                 this.state.show?
-                  <Contact />:<p>Contact Not Shown</p>
+                  <Contact   />:<p>Contact Not Shown</p>
             }
 
             
@@ -78,6 +79,13 @@ export default class About extends Component {
 
                 </ul>
             }
+
+
+            <button onClick={() => this.props.history.push("/")}>
+              Home (About)
+            </button>
+
+
             </div>
         )
     }
