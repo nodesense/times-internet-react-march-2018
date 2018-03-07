@@ -13,6 +13,7 @@ export default class Cart extends Component {
             items: [{id: 1, price: 100, qty: 1, name: 'Product 1'}],
             amount: 0, //price * qty of all items
             count: 0, // qty of all items
+            highlight: false,
             flag: false //dummy
         }
     }
@@ -43,6 +44,12 @@ export default class Cart extends Component {
         }
 
         //TODO:
+        //Immutable objects
+        let newList = [...this.state.items, item];
+         
+        this.setState({
+            items: newList
+        })
          
     }
 
@@ -84,7 +91,13 @@ export default class Cart extends Component {
             </button>
 
 
-            <button onClick={() => this.refresh() }>
+            <button onClick={() => this.refresh() } 
+                    className={this.state.highlight?"success":''}
+
+                    onMouseEnter={() => this.setState({highlight: true})}
+
+                    onMouseLeave={() => this.setState({highlight: false })}
+            >
                 Refresh
             </button>
 

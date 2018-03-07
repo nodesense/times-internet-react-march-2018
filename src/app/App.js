@@ -9,6 +9,9 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
 
+//TODO: Lazy load cart
+import Cart from "./cart/components/Cart";
+
 //Virtual dom
 export class App extends React.Component {
 
@@ -30,6 +33,8 @@ export class App extends React.Component {
             <div>
                 <Header />
                 <h1>React App</h1>
+
+                <Cart />
 
                 <Home  counter={1000} />
 
