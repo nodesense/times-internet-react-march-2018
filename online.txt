@@ -1,6 +1,8 @@
 pritesh.loke@timesinternet.in
 
 
+iln.tech@timesinternet.in
+
 open: http://code.nodesense.ai
 
 username: nodesense
@@ -15,3 +17,12 @@ pritesh.loke@timesinternet.in
 > npm start
 
 
+
+
+https://github.com/nodesense/times-internet-react-march-2018
+
+http://code.nodesense.ai/
+username: nodesense
+password: bsol
+
+iln.tech@timesinternet.in

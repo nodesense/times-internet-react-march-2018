@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
 
+import PropTypes from "prop-types";
+
 //React.Component == Component
 
 export default class Home extends Component {
-    constructor() {
+    constructor(props) {
         super();
 
         //react keyword
         //state is mutable
         this.state = {
-            counter: 0
+            counter: props.counter
         }
+    }
+
+    //ES.NEXT static inside class
+    static propTypes = {
+        counter: PropTypes.number
+    }
+
+    static defaultProps = {
+        counter: 0
     }
 
     increment() {

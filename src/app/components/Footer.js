@@ -2,6 +2,7 @@
 // presentational/stateless component
 
 import React from "react";
+import PropTypes from "prop-types";
 
 //returns virtual dom
 //react calls this function
@@ -24,3 +25,26 @@ export default function Footer(props) {
         </div>
     )
 }
+
+
+//Keyword
+Footer.propTypes = {
+    // mandatory
+    year: PropTypes.number.isRequired,
+    company: PropTypes.string,
+
+    address: PropTypes.shape({
+        city: PropTypes.string.isRequired,
+        pincode: PropTypes.number
+    }).isRequired
+
+}
+
+
+//keyword
+Footer.defaultProps = {
+    // default values 
+    company: 'React App'
+}
+
+//TODO: custom validation

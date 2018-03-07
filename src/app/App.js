@@ -31,12 +31,12 @@ export class App extends React.Component {
                 <Header />
                 <h1>React App</h1>
 
-                <Home />
+                <Home  counter={1000} />
 
                 <About />
                 
-                <Footer year={2017 + 1} 
-                        company="React App" 
+                <Footer year={2018}
+                       
                         address={this.address}
                 >
                     <p>Contact us: 9:00 AM to 6:00 PM</p>
