@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import CartList from "./CartList";
 import CartSummary from "./CartSummary";
+
+import Button from "./Button";
  
 export default class Cart extends Component {
     constructor(props) {
@@ -16,6 +18,16 @@ export default class Cart extends Component {
             highlight: false,
             flag: false //dummy
         }
+    }
+
+    componentWillMount() {
+        console.log("Cart will mount");
+
+        this.recalculateTotal(this.state.items);
+    }
+
+    componentDidMount() {
+        console.log("Cart Did Mount");
     }
  
     recalculateTotal(items) {
@@ -50,8 +62,11 @@ export default class Cart extends Component {
         this.setState({
             items: newList
         })
+
+        this.recalculateTotal(newList);
          
     }
+ 
 
     removeItem(id) {
         //TODO:
@@ -81,25 +96,17 @@ export default class Cart extends Component {
             <div> 
             <h2>Cart</h2>
 
-            <button onClick={() => this.addItem() }>
+            <Button onClick={() => this.addItem() }>
              Add
-            </button>
+            </Button>
 
-
-            <button onClick={() => this.empty() }>
+            <Button onClick={() => this.empty() }>
                 Empty
-            </button>
+            </Button>
 
-
-            <button onClick={() => this.refresh() } 
-                    className={this.state.highlight?"success":''}
-
-                    onMouseEnter={() => this.setState({highlight: true})}
-
-                    onMouseLeave={() => this.setState({highlight: false })}
-            >
+            <Button onClick={ () => this.refresh() }>
                 Refresh
-            </button>
+            </Button>
 
             <CartList items={this.state.items}
                       

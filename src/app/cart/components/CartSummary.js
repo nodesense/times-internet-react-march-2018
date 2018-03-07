@@ -7,8 +7,28 @@ export default class CartSummary extends Component {
         super(props);
     }
 
-    //TODO: Life cycle methods
-    
+    //TODO: update Life cycle methods
+
+    // when parent render called on update cycle
+
+    componentWillReceiveProps(nextProps) {
+        console.log("Summary will receive props");
+        console.log("nextProps", nextProps);
+        console.log("this.props", this.props);
+    }
+
+
+    // when parent render called on update cycle
+    // when component this.setState called on update cycle
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("Summary should update");
+
+        return this.props.amount != nextProps.amount ||
+               this.props.count != nextProps.count;
+
+        //return true; // calls render
+    }
+
     
     render() {
         console.log("CartSummary render");

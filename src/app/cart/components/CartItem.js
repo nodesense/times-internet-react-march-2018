@@ -6,6 +6,10 @@ export default class CartItem extends Component {
     constructor(props) {
         super(props);
     }
+
+    componentWillUnmount() {
+        console.log("CartItem will unmount");
+    }
      
     
     render() {

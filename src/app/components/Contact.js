@@ -7,6 +7,9 @@ export default class Contact extends Component {
         console.log("Contact created");
     }
      
+    componentWillUnmount() {
+        console.log("Contact will unmount");
+    }
     
     render() {
         return (

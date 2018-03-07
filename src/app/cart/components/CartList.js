@@ -9,6 +9,10 @@ export default class CartList extends Component {
         super(props);
     }
      
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("Cart list should update");
+        return this.props.items != nextProps.items;
+    }
     
     render() {
         console.log("CartList render");
