@@ -15,7 +15,7 @@ import About from "./components/About";
 
 import NotFound from "./components/NotFound";
 
-import ProductList from "./cart/containers/ProductList";
+//import ProductList from "./cart/containers/ProductList";
 
 import Loadable from 'react-loadable';
 
@@ -31,6 +31,12 @@ const LazyCartComponent = Loadable({
     loader: () => import('./cart/components/Cart'),
     loading: Loading,
   });
+
+
+const LazyProductListComponent = Loadable({
+    loader: () => import('./cart/containers/ProductList'),
+    loading: Loading,
+});
 
 
 
@@ -74,7 +80,7 @@ export class App extends React.Component {
                     
                     <Route path="/cart" component={LazyCartComponent} /> 
 
-                    <Route path="/products" component={ProductList} />
+                    <Route path="/products" component={LazyProductListComponent} />
                     <Route path="*" component={NotFound} />
                   
                     </Switch>
