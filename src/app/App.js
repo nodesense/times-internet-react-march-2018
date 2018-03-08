@@ -11,11 +11,27 @@ import Home from "./containers/Home";
 import About from "./components/About";
 
 //TODO: Lazy load cart
-import Cart from "./cart/components/Cart";
+//import Cart from "./cart/components/Cart";
 
 import NotFound from "./components/NotFound";
 
 import ProductList from "./cart/containers/ProductList";
+
+import Loadable from 'react-loadable';
+
+function Loading() {
+    return (
+        <div> 
+            <img src="/assets/loading.gif" />
+        </div>
+    )
+}
+
+const LazyCartComponent = Loadable({
+    loader: () => import('./cart/components/Cart'),
+    loading: Loading,
+  });
+
 
 
 import {BrowserRouter as Router, 
@@ -55,7 +71,9 @@ export class App extends React.Component {
                     <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/about" component={About} />
-                    <Route path="/cart" component={Cart} />
+                    
+                    <Route path="/cart" component={LazyCartComponent} /> 
+
                     <Route path="/products" component={ProductList} />
                     <Route path="*" component={NotFound} />
                   
