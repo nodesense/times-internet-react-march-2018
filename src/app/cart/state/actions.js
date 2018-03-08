@@ -1,3 +1,5 @@
+// action creators
+
 import * as ActionTypes from "./action-types";
 
 export function initProducts(products){

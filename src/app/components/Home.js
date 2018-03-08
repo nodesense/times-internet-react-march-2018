@@ -23,7 +23,11 @@ export default class Home extends Component {
 
     increment() {
         //received from parent/container
-        this.props.onIncrement(1);
+       // this.props.onIncrement(1);
+
+       // from bind action creators
+       // increment is bound to dispatch
+       this.props.actions.increment(1);
     }
 
     decrement() {

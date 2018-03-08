@@ -2,6 +2,8 @@
 
 import {connect} from 'react-redux';
 
+import {bindActionCreators} from 'redux';
+
 import Home from "../components/Home";
 import * as actions from "../state/actions";
 
@@ -34,9 +36,16 @@ function mapDispatchToProps(dispatch) {
             dispatch(action);
         },
 
-        onDecrement: function(value) {
-            dispatch(actions.decrement(value));
-        }
+        // onDecrement: function(value) {
+        //     dispatch(actions.decrement(value));
+        // }
+
+        onDecrement: bindActionCreators(actions.decrement,
+                                       dispatch),
+
+        //props.actions.increment (bound method dispatch)
+        //actions.increment - simple function
+        actions: bindActionCreators(actions, dispatch)
     }
 }
 

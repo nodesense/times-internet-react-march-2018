@@ -1,5 +1,6 @@
 import {createStore, 
-        combineReducers} from 'redux';
+        combineReducers, 
+        applyMiddleware} from 'redux';
 
 const INITIAL_STATE = 0;
 
@@ -22,11 +23,34 @@ function counterReducer(state = INITIAL_STATE,
     }
 }
 
+
+function loggerMiddleware(store) {
+        console.log("Outter logger")
+        return function(next) {
+                console.log("logger next")
+                return function(action) {
+                      console.log("LOGGER ", action);
+                      console.log(typeof action);  
+                      // forward action to next middlware/reduers
+                      let result = next(action);
+                      console.log("State ", store.getState());
+                      return result;
+                }
+        }
+}
+
+import cartReducer from './cart/state/cartReducer';
+import productReducer from './cart/state/productReducer';
+
+
 let rootReducer = combineReducers({
         //state: reducerFn
-        counter: counterReducer
+        counter: counterReducer,
+        cartItems: cartReducer,
+        productState: productReducer
 });
 
-let store = createStore(rootReducer);
+let store = createStore(rootReducer, 
+                        applyMiddleware(loggerMiddleware));
 
 export default store;

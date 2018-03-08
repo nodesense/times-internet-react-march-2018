@@ -15,6 +15,9 @@ import Cart from "./cart/components/Cart";
 
 import NotFound from "./components/NotFound";
 
+import ProductList from "./cart/containers/ProductList";
+
+
 import {BrowserRouter as Router, 
         Switch, 
         Route} from 'react-router-dom';
@@ -38,7 +41,7 @@ export class App extends React.Component {
     // create and return virtual dom
     render() {
         return (
-            <Router basename="http://localhost:8080/app">
+            <Router >
                 <div>
                     <Header />
                     <h1>React App</h1>
@@ -53,6 +56,7 @@ export class App extends React.Component {
                     <Route path="/" exact component={Home} />
                     <Route path="/about" component={About} />
                     <Route path="/cart" component={Cart} />
+                    <Route path="/products" component={ProductList} />
                     <Route path="*" component={NotFound} />
                   
                     </Switch>
