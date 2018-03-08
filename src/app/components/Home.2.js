@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 
 import PropTypes from "prop-types";
 
+import store from "../store";
 
-//REACT REDUX BRIDGE IMPL
+
  
 //React.Component == Component
 
@@ -22,18 +23,42 @@ export default class Home extends Component {
     }
 
     increment() {
-        //received from parent/container
-        this.props.onIncrement(1);
+        let action = {
+            type: 'INCREMENT',
+            value: 1
+        }
+
+        console.log("DISPATCH");
+        store.dispatch(action);
     }
 
     decrement() {
-        this.props.onDecrement(1);
+        let action = {
+            type: 'DECREMENT',
+            value: 1
+        }
+
+        console.log("DISPATCH");
+        store.dispatch(action);
     }
-  
+
+    componentDidMount() {
+        this.unsubscribeFn = store.subscribe( ()=> {
+            console.log("HOME SUBS");
+            this.forceUpdate();
+        });
+    }
+
+    componentWillUnmount() {
+        console.log("home will unmount");
+        this.unsubscribeFn();
+    }
+
     render() {
  
-        //counter props passed by container
-        let counter = this.props.counter;
+        let state = store.getState();
+        //{counter: 0}
+        let counter = state.counter;
 
         console.log("Home render", counter);
  

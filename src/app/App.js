@@ -6,7 +6,8 @@ import Footer from "./components/Footer";
 
 import Header from "./components/Header";
 
-import Home from "./components/Home";
+import Home from "./containers/Home";
+
 import About from "./components/About";
 
 //TODO: Lazy load cart
@@ -37,7 +38,7 @@ export class App extends React.Component {
     // create and return virtual dom
     render() {
         return (
-            <Router>
+            <Router basename="http://localhost:8080/app">
                 <div>
                     <Header />
                     <h1>React App</h1>

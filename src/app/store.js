@@ -1,4 +1,5 @@
-import {createStore} from 'redux';
+import {createStore, 
+        combineReducers} from 'redux';
 
 const INITIAL_STATE = 0;
 
@@ -21,6 +22,11 @@ function counterReducer(state = INITIAL_STATE,
     }
 }
 
-let store = createStore(counterReducer);
+let rootReducer = combineReducers({
+        //state: reducerFn
+        counter: counterReducer
+});
+
+let store = createStore(rootReducer);
 
 export default store;
