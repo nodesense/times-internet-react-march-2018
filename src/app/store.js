@@ -2,6 +2,8 @@ import {createStore,
         combineReducers, 
         applyMiddleware} from 'redux';
 
+import thunk from "redux-thunk";
+
 const INITIAL_STATE = 0;
 
 function counterReducer(state = INITIAL_STATE,
@@ -31,6 +33,9 @@ function loggerMiddleware(store) {
                 return function(action) {
                       console.log("LOGGER ", action);
                       console.log(typeof action);  
+                //        if (typeof action == 'function') {
+                //                return action(store.dispatch, store.getState); 
+                //        }
                       // forward action to next middlware/reduers
                       let result = next(action);
                       console.log("State ", store.getState());
@@ -51,6 +56,6 @@ let rootReducer = combineReducers({
 });
 
 let store = createStore(rootReducer, 
-                        applyMiddleware(loggerMiddleware));
+                        applyMiddleware(loggerMiddleware, thunk));
 
 export default store;

@@ -9,8 +9,11 @@ export default class ProductList extends Component {
     
     componentDidMount() {
         //container shall pass fetchProducts method
-        //this.props.fetchProducts();
+       
+        //thru bind Action creators
+        //dispatch
 
+        this.props.actions.fetchProducts();
     }
     
     render() {
@@ -23,7 +26,12 @@ export default class ProductList extends Component {
         return (
             <div> 
             <h2>Product List</h2>
+
+            {loading && 
+                <img src="/assets/loading.gif" />
+            }
             
+            {!loading &&
             <ul>
                 {
                     products.map( product => (
@@ -37,6 +45,7 @@ export default class ProductList extends Component {
                     ))
                 }
             </ul>
+            }
 
             </div>
         )

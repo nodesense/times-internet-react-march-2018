@@ -7,7 +7,8 @@ import * as actions from "../state/actions";
 
 const mapStateToProps = (state) => {
     return {
-         
+         products: state.productState.products,
+         loading: state.productState.loading
     }
 }
 
